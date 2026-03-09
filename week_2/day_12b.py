@@ -68,7 +68,7 @@ df_cleaned = df[(df['Age'] >= lower_bound) & (df['Age'] <= upper_bound)]
 print("Cleaned Data:\n", df_cleaned)
 
 #  2. replacing outliers - reduce their impact without losing data.
-#  np.where(condition , new_value, old_value)
+#  np.where(condition , val_if_condition_true, val_if_condition_false)
 df['Age'] = np.where((df['Age'] < lower_bound) | (df['Age'] > upper_bound), df['Age'].median(), df['Age'])
 print("Data after Replacing Outliers:\n", df)
 

@@ -5,29 +5,29 @@ data = {"Name": ["Eve", "Jack", "Charlie", "Henry", "John"],
         "City": ["NY", "LA", "SF", "Houston", "Seattle"]}
 df = pd.DataFrame(data)
 
-# print(df.head(3))
+print(df.head(3))
 
-# print()
+print()
 
-# print(df.tail(2))
+print(df.tail(2))
 
-# print(df.columns)
+print(df.columns)
 
-# print(df.dtypes)
+print(df.dtypes)
 
-# print(df.describe()) # provide statistical summaryof the dataset
+print(df.describe()) # provide statistical summaryof the dataset
 
-# print(df[["Name", "City"]])
+print(df[["Name", "City"]])
 
-# print(df["City"].unique())
+print(df["City"].unique())
 
-# print(df[df["Age"] > 30])
+print(df[df["Age"] > 30])
 
-# print(df[(df["Age"] > 30) & (df["City"] == "SF")])
+print(df[(df["Age"] > 30) & (df["City"] == "SF")])
 
-# print(df[(df["Age"] > 30) | (df["City"] == "LA")])
+print(df[(df["Age"] > 30) | (df["City"] == "LA")])
 
-# print(df.iloc[0])
+print(df.iloc[0])
 
 print(df.iloc[0,2]) #  = row index, 2 = column index
 
@@ -35,7 +35,7 @@ print(df.iloc[1:3])
 
 df.set_index("Name", inplace=True)
 
-# print(df.loc['Alice'])
+print(df.loc['Alice'])
 
 
 #  Update: Modifying Data in Pandas
