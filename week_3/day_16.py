@@ -287,6 +287,17 @@ import matplotlib.pyplot as plt
 
 tips = sns.load_dataset("tips")
 
+# Concepts in Time Series Analysis
+# Trend: It represents the general direction in which a time series is moving over an extended period. It checks whether the values are increasing, decreasing or staying relatively constant.
+# Seasonality: Seasonality refers to repetitive patterns or cycles that occur at regular intervals within a time series corresponding to specific time units like days, weeks, months or seasons.
+# Moving average: It is used to smooth out short-term fluctuations and highlight longer-term trends or patterns in the data.
+# Noise: It represents the irregular and unpredictable components in a time series that do not follow a pattern.
+# Differencing: It is used to make the difference in values of a specified interval. By default it’s 1 but we can specify different values for plots.
+# Stationarity: A stationary time series is statistical properties such as mean, variance and autocorrelation remain constant over time.
+# Order: The order of differencing refers to the number of times the time series data needs to be differenced to achieve stationarity.
+# Autocorrelation: Autocorrelation is a statistical method used in time series analysis to quantify the degree of similarity between a time series and a lagged version of itself.
+# Resampling: Resampling is a technique in time series analysis that is used for changing the frequency of the data observations.
+
 plot=sns.FacetGrid(tips, col="time", row="sex")
 plot.map(sns.scatterplot, "total_bill", "tip")
 plt.show()

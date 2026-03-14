@@ -1,0 +1,36 @@
+# Exploratory Data Analysis:
+
+# 1. Univariate Analysis - histograms,box plot, bar charts, mean, median, mode, variance and standard deviation
+
+
+# 2. Bivariate Analysis - find connections, correlations and dependencies - Scatter plots , correlation coefficient(use Pearson's correlation for linear data),Cross-tabulation or contingency tables
+# Scatter plots which visualize the relationship between two continuous variables.
+# Correlation coefficient measures how strongly two variables are related which commonly use Pearson's correlation for linear relationships.
+# Cross-tabulation or contingency tables shows the frequency distribution of two categorical variables and help to understand their relationship.
+# Line graphs are useful for comparing two variables over time in time series data to identify trends or patterns.
+# Covariance measures how two variables change together but it is paired with the correlation coefficient for a clearer and more standardized understanding of the relationship.
+
+
+# 3. Multivariate Analysis 
+# Pair plots which shows the relationships between multiple variables at once and helps in understanding how they interact.
+# Another technique is Principal Component Analysis (PCA) which reduces the complexity of large datasets by simplifying them while keeping the most important information.
+# Spatial Analysis is used for geographical data by using maps and spatial plotting to understand the geographical distribution of variables.
+# Time Series Analysis is used for datasets that involve time-based data and it involves understanding and modeling patterns and trends over time. Common techniques include line plots, autocorrelation analysis, moving averages and ARIMA models
+
+
+
+# Steps for Performing Exploratory Data Analysis
+# Step 1: Understanding the Problem and the Data
+# Step 2: Importing and Inspecting the Data - size, missing values and there pattern, data type, error causing or inconsistent values
+# Step 3: Handling Missing Data
+# patterns and possible causes of missing data- missing completely at random (MCAR), missing at random (MAR) or missing not at random (MNAR).remove missing data(if data is MCAR) or impute (fill in) the missing values, imputation methods,Consider the impact of missing data.
+# Step 4: Exploring Data Characteristics- characteristics of our data- mean, median, mode, standard deviation, skewness and kurtosis for numerical variables
+# Step 5: Performing Data Transformation-
+# Scaling or normalizing numerical variables like min-max scaling or standardization.
+# Encoding categorical variables(one-hot encoding or label encoding).
+# Applying mathematical transformations like logarithmic square root to correct skewness or non-linearity.
+# Creating new variables from existing ones like calculating ratios or combining variables.
+# Aggregating or grouping data based on specific variables or conditions.
+# Step 6: Visualizing Relationship of Data
+# Step 7: Handling Outliers
+# Step 8: Communicate Findings and Insights

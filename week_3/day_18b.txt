@@ -1,0 +1,160 @@
+Advanced Time Series Analysis
+
+comments
+Time series analysis involves methods for analyzing time-ordered data where the goal is often to forecast future values or understand the underlying patterns. Unlike standard machine learning, time series analysis requires consideration of the temporal ordering of data, seasonality, trends and stationarity. Below are some of the advanced techniques and concepts essential for time series forecasting.
+
+1. Handling Missing Values and Outliers
+Handling missing values and outliers is necessary in time series data because gaps or unusual data points can distort the analysis and predictions.
+
+missing_values
+Handling Missing Values
+1.1. Forward or Backward Fill
+Forward or Backward Fill is used to fill missing values by carrying forward the last known value (forward fill) or using the next known value (backward fill).
+
+Best used:
+
+When data is missing in small intervals such as missing stock prices for a few minutes or hours.
+When the data exhibits stability over time, so the assumption that the value doesn’t change drastically is valid.
+Not suitable:
+
+For large gaps in the data as this might introduce a bias or unrealistic assumptions.
+If the missing data represents some significant change in the data trend (e.g drastic weather changes).
+Example: In stock market data, if the price for a specific day is missing, forward-filling can propagate the last known price to the next timestamp.
+
+1.2. Interpolation
+Interpolation estimates missing values based on surrounding data points. Linear interpolation is a common method where the missing value is calculated by drawing a straight line between the known points before and after the gap.
+
+Best used:
+
+When the gaps are small and evenly distributed making interpolation a reasonable estimation.
+In sensor data where there are small interruptions in measurements.
+Not suitable:
+
+For large or irregular gaps, as the interpolation might not accurately reflect the underlying data trends.
+Example: In financial data, if a data point for a particular trading day is missing, linear interpolation can be used to fill the gap based on the surrounding trading days.
+
+1.3. Outlier Detection
+Outlier detection involves identifying and treating extreme values that deviate significantly from the trend of the data. Techniques like z-scores or rolling windows can be used to detect these points.
+
+anomaly
+Outlier Detection
+Best used:
+
+When extreme points are a result of errors or anomalies in data collection.
+In cases where outliers represent unusual events that don’t belong to the general pattern like a sudden market crash.
+Not suitable:
+
+When outliers represent legitimate variations or extreme events in the time series data like spikes in demand during holidays.
+Example: In a time series of daily sales data, an outlier might be detected if the sales value is far beyond the typical range which could indicate an error or a one-off event like a promotional sale.
+
+2. Transformations for Stability
+Transformations are used to stabilize variance and make time series data more manageable for modeling.
+
+2.1. Log Transformation
+Log Transformation reduces the impact of large values by applying a logarithmic scale. This is especially useful when data grows exponentially.
+
+logtrasform
+Log Transformation
+Best used:
+
+When the data exhibits exponential growth, such as in financial markets or population growth.
+In cases where variance increases with the mean (heteroscedasticity).
+Not suitable:
+
+For data with zero or negative values, as the logarithm of zero or negative numbers is undefined.
+Example: If stock prices are growing exponentially over time, applying a log transformation helps normalize the variance and makes the data more suitable for modeling.
+
+2.2. Box-Cox Transformation
+Box-Cox Transformation is a more flexible transformation technique that helps stabilize variance and make data more normal. It is a family of power transformations and can be used on non-negative data.
+
+Box-cox-plot
+Box-Cox Transformation
+Best used:
+
+When log transformation is not suitable due to zero or negative values.
+In cases where data exhibits varying degrees of variance and non-normality.
+Not suitable:
+
+For data that is already normally distributed or when the data contains zero or negative values (Box-Cox requires positive values).
+Example: In financial data with varying volatility, Box-Cox transformation can normalize the distribution, helping the model make more accurate predictions.
+
+2.3. Scaling (Standardization/Min-Max)
+Scaling involves adjusting the range of data, either through standardization (zero mean, unit variance) or Min-Max scaling (rescaling values to a range of 0 to 1).
+
+scaling
+Scaling (Standardization/Min-Max)
+Best used:
+
+When we want to treat features equally, especially when combining time series data with other variables or when using models sensitive to feature scaling (like neural networks).
+When different features have vastly different scales.
+Not suitable:
+
+If the data contains significant outliers, as scaling methods like Min-Max can distort results by giving disproportionate weight to extreme values.
+Example: When using machine learning algorithms like random forests or neural networks for time series forecasting, scaling ensures all features contribute equally to the model.
+
+3. Lag Features and Rolling Statistics
+Lag features and rolling statistics help capture temporal dependencies, smoothing out short-term fluctuations to focus on trends and seasonality.
+
+3.1. Lag Features
+Lag Features are created by shifting the time series by a certain number of time steps, creating new features that represent past values.
+
+lag
+Lag Features
+Best used:
+
+When the time series exhibits autocorrelation, meaning past values are good predictors of future values.
+For models like ARIMA where past values are used to predict future values.
+Not suitable:
+
+For time series with no autocorrelation where past values do not help in predicting future values.
+Example: If we’re forecasting daily sales, using lag features such as the sales from the previous day or the last week can help improve forecasting accuracy.
+
+3.2. Rolling Mean and Rolling Standard Deviation
+Rolling Mean and Rolling Standard Deviation are used to smooth out the time series and help visualize trends and seasonality. They compute the mean and standard deviation over a sliding window.
+
+roll
+Rolling Mean and Rolling Standard Deviation
+Best used:
+
+To identify trends or seasonality, especially when the data shows cyclical patterns.
+To assess stationarity, as rolling statistics help visualize fluctuations and changes in the series.
+Not suitable:
+
+When the window size is too large, as it may smooth out important short-term variations.
+Example: In a time series of monthly sales, a rolling mean can help reveal underlying trends and smooth out seasonality, providing insights into long-term performance.
+
+4. Advanced Statistical Tests
+In time series analysis, advanced statistical tests are essential for verifying assumptions and ensuring that the data and models behave as expected. These tests help assess stationarity, model adequacy and residual behavior, contributing to more accurate and reliable forecasts.
+
+4.1. KPSS Test
+The KPSS (Kwiatkowski-Phillips-Schmidt-Shin) test is used to check the stationarity of a time series. Unlike the ADF test which tests for a unit root, the KPSS test tests whether the time series is stationary around a deterministic trend.
+
+kpss_test
+KPSS Test
+Best used:
+
+To complement the ADF test for confirming stationarity. If ADF suggests non-stationarity, but KPSS indicates stationarity, this may point to the need for further analysis or differencing.
+Not suitable:
+
+If we have already established stationarity using other methods like ADF, as it may yield redundant results.
+Example: After conducting an ADF test on a financial time series and finding that it is non-stationary, the KPSS test can be applied to determine if the series is stationary around a deterministic trend.
+
+4.2. Ljung-Box Test
+The Ljung-Box test checks whether the residuals from a time series model are white noise, meaning they have no significant autocorrelation. This is a model diagnostic tool used after fitting a time series model.
+
+Best used: After fitting models like ARIMA to ensure that residuals do not contain patterns that the model has not captured.
+
+Not suitable: For deep learning-based models (such as LSTMs) where residual diagnostics might not be relevant or needed.
+
+Example: After fitting an ARIMA model to sales data, the Ljung-Box test can be used to validate that the residuals resemble white noise, ensuring that the model has adequately captured the temporal dependencies.
+
+5. Forecasting Models and Machine Learning for Time Series
+Time series forecasting can be approached using both classical statistical models and machine learning techniques.
+
+machine_learning_model
+Machine Learning Models
+ARIMA (Auto-Regressive Integrated Moving Average): ARIMA is a statistical model used for forecasting univariate time series data, primarily capturing the autocorrelation and trend through differencing, autoregressive and moving average components.
+SARIMA (Seasonal ARIMA): SARIMA extends ARIMA by including seasonal components, making it suitable for forecasting time series with seasonal patterns, such as monthly or yearly cycles.
+Exponential Smoothing (Holt-Winters): This model applies exponentially decreasing weights to past observations and can handle data exhibiting level, trend and seasonality, making it useful for retail sales, traffic or temperature forecasts.
+Random Forests: Random Forests can model time series data by using lag features and rolling statistics, capturing non-linear relationships that are often missed by traditional methods.
+LSTMs and GRUs (Deep Learning): Long Short-Term Memory (LSTM) and Gated Recurrent Unit (GRU) networks are specialized deep learning models designed to capture long-term dependencies and sequential patterns in time series data.
